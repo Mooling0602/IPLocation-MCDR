@@ -1,0 +1,11 @@
+{
+    "id": "iploc",
+    "version": "0.0.1",
+    "name": "IPLocation",
+    "description": "在玩家上线时显示其IP归属地",
+    "author": "Mooling0602",
+    "link": "https://github.com/Mooling0602/IPLocation-MCDR",
+    "dependencies": {
+        "mcdreforged": ">=2.0.0-alpha.1"
+    }
+}

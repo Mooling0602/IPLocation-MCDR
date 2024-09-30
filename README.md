@@ -8,6 +8,14 @@
 ## 用法
 开箱即用。
 
+## 效果
+> 控制台效果：
+![屏幕截图_20240930_224343](https://github.com/user-attachments/assets/2e36d77c-2237-48e9-a0bf-b5695574d375)
+> 游戏内效果：
+![Screenshot_20240930-225430_Minecraft](https://github.com/user-attachments/assets/42bad1a3-623f-4da2-9a36-6e6a0f32861d)
+
+
+
 ## 注意
 若无法查询出IP归属地，可以尝试增加配置（config/iploc/config.json）中的retry数，默认查询3次应该足以查询出结果了。
 
@@ -15,6 +23,8 @@
 
 ## 局限性
 使用的淘宝IP地址库，精准度和可用性难以保证。
+
+提示语句暂不能自定义，计划于后续进行支持。
 
 ## 其他
 目前尚无相关的同类MCDR插件，而Spigot插件EssentialsX GeoIP配置比较繁琐且有时提供的信息不完整，因此开发此插件。

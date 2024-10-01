@@ -5,6 +5,7 @@
     "description": {
         "en_us": "Show the IP location when player joined the game.",
         "zh_cn": "在玩家上线时显示其IP归属地。"
+    },
     "author": "Mooling0602",
     "link": "https://github.com/Mooling0602/IPLocation-MCDR",
     "dependencies": {

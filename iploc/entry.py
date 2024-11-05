@@ -1,7 +1,7 @@
 import iploc.api
 
 from mcdreforged.api.all import *
-from iploc.config import load_config
+from iploc.config import config
 
 psi = ServerInterface.psi()
 try:
@@ -13,7 +13,6 @@ except ModuleNotFoundError:
     send = lambda *args, **kwargs: psi.broadcast(*args, **kwargs)
 
 def on_load(server: PluginServerInterface, old):
-    load_config()
     server.register_event_listener('player_ip_logger.player_login', on_player_ip_logged)
 
 
@@ -22,7 +21,6 @@ def on_player_ip_logged(server: PluginServerInterface, player_name:str, player_i
     player = player_name
     server.logger.info(f"正在查询玩家{player}的IP归属地...")
     ip = player_ip
-    config = iploc.config.config
     using_api = config["api"]
     location = getattr(iploc.api, using_api)(ip)
     send(f"[!] 玩家 {player} 的IP归属地：{location}")

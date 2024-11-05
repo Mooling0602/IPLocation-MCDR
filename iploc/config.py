@@ -7,6 +7,4 @@ default_config = {
     "retry": 3
 }
 
-def load_config():
-    global config
-    config = psi.load_config_simple("config.json", default_config)
+config = psi.load_config_simple("config.json", default_config)

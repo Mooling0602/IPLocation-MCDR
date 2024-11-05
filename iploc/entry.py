@@ -22,7 +22,7 @@ def on_player_ip_logged(server: PluginServerInterface, player_name:str, player_i
     player = player_name
     server.logger.info(f"正在查询玩家{player}的IP归属地...")
     ip = player_ip
-    config = iploc.config
+    config = iploc.config.config
     using_api = config["api"]
     location = getattr(iploc.api, using_api)(ip)
     send(f"[!] 玩家 {player} 的IP归属地：{location}")

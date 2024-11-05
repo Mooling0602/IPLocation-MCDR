@@ -22,8 +22,15 @@ def on_player_ip_logged(server: PluginServerInterface, player_name:str, player_i
     server.logger.info(f"正在查询玩家{player}的IP归属地...")
     ip = player_ip
     using_api: str = config["api"]
-    location = getattr(iploc.api, using_api, "getIPLoc")(ip)
-    send(f"[!] 玩家 {player} 的IP归属地：{location}")
+    api_module = globals().get(f"iploc.api.{using_api}")
+    try:
+        if api_module is not None:
+            location = api_module.getIPLoc(ip)
+            send(f"[!] 玩家 {player} 的IP归属地：{location}")
+        else:
+            raise AttributeError(f"不支持该API接口: {using_api}，请正确配置插件（使用taobao或baidu）！")
+    except AttributeError as e:
+        server.logger.error(f"插件配置错误: \n{e}")
 
 # 旧版检测方式，在玩家上线时解析其IP，若上面调用的插件工作稳定，此部分将在后续版本彻底移除
 # def on_player_joined(server: PluginServerInterface, player: str, info: Info):

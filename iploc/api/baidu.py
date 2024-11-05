@@ -3,10 +3,8 @@ import requests
 from mcdreforged.api.all import *
 from iploc.config import config
 
-psi = ServerInterface.psi()
-
 # 百度API接口
-def getIPLoc(ip):
+def getIPLoc(server: ServerInterface, ip: str):
     url = f"https://opendata.baidu.com/api.php?co=&resource_id=6006&oe=utf8&query={ip}"
     retries = config.get("retry", 3)  # 从配置文件中获取重试次数，默认为 3
     for attempt in range(retries):
@@ -26,7 +24,7 @@ def getIPLoc(ip):
                 return "无法获取IP归属地"
         except requests.RequestException as e:
             if attempt < retries - 1:
-                psi.logger.info(f"尝试获取IP信息失败: {e}，正在重试 ({attempt + 1}/{retries})...")
+                server.logger.warning(f"尝试获取IP归属地失败: {e}，正在重试 ({attempt + 1}/{retries})...")
             else:
-                psi.logger.warning(f"请求错误: {e}")
+                server.logger.warning(f"API请求错误: {e}")
                 return "无法获取IP归属地"

@@ -4,10 +4,8 @@ import requests
 from mcdreforged.api.all import *
 from iploc.config import config
 
-psi = ServerInterface.psi()
-
 ## 淘宝api接口
-def getIPLoc(ip):
+def getIPLoc(server: PluginServerInterface, ip: str):
     url = "https://ip.taobao.com/outGetIpInfo?ip={}&accessKey=alibaba-inc".format(ip)
     req = requests.get(url).text
     IPLoc = json.loads(req)
@@ -25,5 +23,5 @@ def getIPLoc(ip):
             else:
                 return "{}{}{} {}".format(country, province, city, isp)  ## 不在国内，显示原始信息
         else:
-            psi.logger.info(f"尝试 {attempt + 1}/{retries} 获取IP信息失败，重试...")
+            server.logger.warning(f"尝试 {attempt + 1}/{retries} 获取IP归属地失败，重试...")
     return "无法获取IP归属地"

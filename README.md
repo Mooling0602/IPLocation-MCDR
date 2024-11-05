@@ -10,6 +10,7 @@
 
 ## 依赖项
 - 必需依赖：Pypi包request（多数情况下你的Python环境中已经安装好了）
+- 必需依赖：MCDR插件[Player IP Logger](https://mcdreforged.com/zh-CN/plugin/player_ip_logger)（用于获取玩家的IP地址）
 - 可选依赖：MCDR插件[MatrixSync](https://mcdreforged.com/zh-CN/plugin/matrix_sync)（可实现IP归属地广播到Matrix房间内）
 
 ## 效果

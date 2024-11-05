@@ -10,7 +10,7 @@ try:
     from matrix_sync.reporter import sender # type: ignore
     send = lambda *args, **kwargs: sender(*args, **kwargs)
 except ModuleNotFoundError:
-    logger.log('MatrixSync not found. Using server broadcast')
+    psi.logger.log('MatrixSync not found. Using server broadcast')
 
 default_config = {
     "retry": 3

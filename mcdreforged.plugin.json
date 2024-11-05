@@ -11,5 +11,6 @@
     "dependencies": {
         "mcdreforged": ">=2.0.0-alpha.1",
         "player_ip_logger": ">=1.2.0"
-    }
+    },
+    "entrypoint": "iploc.entry"
 }

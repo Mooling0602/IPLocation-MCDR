@@ -1,16 +1,17 @@
 import json
 import re
 import requests
-## 为基本注释
-
-# 代码部分为对接MatrixSync插件的部分，可取消注释后使用，正常情况无需修改，也可以删除
-# import asyncio
-# import matrix_sync.client
 
 from mcdreforged.api.all import *
-from matrix_sync.reporter import sendMsg
 
 psi = ServerInterface.psi()
+send = psi.broadcast
+try:
+    from matrix_sync.reporter import sender # type: ignore
+    send = lambda *args, **kwargs: sender(*args, **kwargs)
+except ModuleNotFoundError:
+    logger.log('MatrixSync not found. Using server broadcast')
+
 default_config = {
     "retry": 3
 }
@@ -60,8 +61,6 @@ def on_player_joined(server: PluginServerInterface, player: str, info: Info):
     if match:
         ip = match.group(0)  ## 提取出IP地址
         iploc = queryIPLoc(ip)
-        server.broadcast(f"[!] 玩家 {player} 的IP归属地：{iploc}")
-        # asyncio.run(sendMsg(f"[!] 玩家 {player} 的IP归属地：{iploc}"))
+        send(f"[!] 玩家 {player} 的IP归属地：{iploc}")
     else:
-        server.broadcast(f"[!] 无法提取玩家 {player} 的IP地址")
-        # asyncio.run(sendMsg(f"[!] 无法提取玩家 {player} 的IP地址"))
+        send(f"[!] 无法提取玩家 {player} 的IP地址")

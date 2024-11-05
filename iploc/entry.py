@@ -17,8 +17,8 @@ def on_load(server: PluginServerInterface, old):
 
 # 调用Player IP Logger
 def on_player_ip_logged(server: PluginServerInterface, player_name:str, player_ip:str):
-    server.logger.info(f"正在查询玩家{player}的IP归属地...")
     player = player_name
+    server.logger.info(f"正在查询玩家{player}的IP归属地...")
     ip = player_ip
     using_api = iploc.config.api
     iploc = getattr(iploc.api, using_api)(ip)

@@ -2,7 +2,7 @@ import json
 import requests
 
 from mcdreforged.api.all import *
-from iploc.entry import config
+from iploc.config import config
 
 psi = ServerInterface.psi()
 

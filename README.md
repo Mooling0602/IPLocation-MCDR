@@ -8,6 +8,10 @@
 ## 用法
 开箱即用。
 
+## 依赖项
+- 必需依赖：Pypi包request（多数情况下你的Python环境中已经安装好了）
+- 可选依赖：MCDR插件[MatrixSync](https://mcdreforged.com/zh-CN/plugin/matrix_sync)（可实现IP归属地广播到Matrix房间内）
+
 ## 效果
 > 控制台效果：
 ![屏幕截图_20240930_224343](https://github.com/user-attachments/assets/2e36d77c-2237-48e9-a0bf-b5695574d375)

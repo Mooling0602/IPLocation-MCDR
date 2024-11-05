@@ -1,3 +1,5 @@
+import iploc.api
+
 from mcdreforged.api.all import *
 from iploc.config import load_config
 
@@ -20,9 +22,9 @@ def on_player_ip_logged(server: PluginServerInterface, player_name:str, player_i
     player = player_name
     server.logger.info(f"正在查询玩家{player}的IP归属地...")
     ip = player_ip
-    using_api = iploc.config.api
-    iploc = getattr(iploc.api, using_api)(ip)
-    send(f"[!] 玩家 {player} 的IP归属地：{iploc}")
+    using_api: str = iploc.config.api
+    location = getattr(iploc.api, using_api)(ip)
+    send(f"[!] 玩家 {player} 的IP归属地：{location}")
 
 # 旧版检测方式，在玩家上线时解析其IP，若上面调用的插件工作稳定，此部分将在后续版本彻底移除
 # def on_player_joined(server: PluginServerInterface, player: str, info: Info):

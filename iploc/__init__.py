@@ -5,12 +5,13 @@ import requests
 from mcdreforged.api.all import *
 
 psi = ServerInterface.psi()
-send = psi.broadcast
 try:
     from matrix_sync.reporter import sender # type: ignore
-    send = lambda *args, **kwargs: sender(*args, **kwargs)
+    # 如果导入成功，则同时执行 sender 和 psi.broadcast
+    send = lambda *args, **kwargs: (sender(*args, **kwargs), psi.broadcast(*args, **kwargs))
 except ModuleNotFoundError:
-    psi.logger.log('MatrixSync not found. Using server broadcast')
+    # 如果导入失败，则仅执行 psi.broadcast
+    send = lambda *args, **kwargs: psi.broadcast(*args, **kwargs)
 
 default_config = {
     "retry": 3

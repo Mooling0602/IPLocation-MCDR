@@ -6,7 +6,6 @@ from iploc.config import config
 psi = ServerInterface.psi()
 
 # 百度API接口
-@new_thread('IPLoc-API: Baidu')
 def getIPLoc(ip):
     url = f"https://opendata.baidu.com/api.php?co=&resource_id=6006&oe=utf8&query={ip}"
     retries = config.get("retry", 3)  # 从配置文件中获取重试次数，默认为 3

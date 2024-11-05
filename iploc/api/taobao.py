@@ -7,7 +7,6 @@ from iploc.config import config
 psi = ServerInterface.psi()
 
 ## 淘宝api接口
-@new_thread('IPLoc-API: Taobao')
 def getIPLoc(ip):
     url = "https://ip.taobao.com/outGetIpInfo?ip={}&accessKey=alibaba-inc".format(ip)
     req = requests.get(url).text

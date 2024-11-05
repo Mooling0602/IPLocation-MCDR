@@ -1,14 +1,15 @@
 {
     "id": "iploc",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "name": "IPLocation",
     "description": {
-        "en_us": "Show the IP location when player joined the game.",
-        "zh_cn": "在玩家上线时显示其IP归属地。"
+        "en_us": "Show the IP location when player joined the game with multiple APIs.",
+        "zh_cn": "使用多种API，在玩家上线时显示其IP归属地。"
     },
     "author": "Mooling0602",
     "link": "https://github.com/Mooling0602/IPLocation-MCDR",
     "dependencies": {
-        "mcdreforged": ">=2.0.0-alpha.1"
+        "mcdreforged": ">=2.0.0-alpha.1",
+        "player_ip_logger": ">=1.2.0"
     }
 }

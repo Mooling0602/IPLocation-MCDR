@@ -1,6 +1,6 @@
 {
     "id": "iploc",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "name": "IPLocation",
     "description": {
         "en_us": "Show the IP location when player joined the game with multiple APIs.",

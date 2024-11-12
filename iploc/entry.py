@@ -5,16 +5,12 @@ from iploc.config import config
 
 psi = ServerInterface.psi()
 try:
-    from matrix_sync.reporter import sender # type: ignore
-    # 同时转发到Matrix，若检测到插件MatrixSync正常工作
+    from matrix_sync.reporter import send_matrix
+    # 同时转发到Matrix，若检测到插件MatrixSync正常工作，其v2.3.x版本支持已废弃，具体见其Release更新日志
     send = lambda *args, **kwargs: (sender(*args, **kwargs), psi.broadcast(*args, **kwargs))
 except ModuleNotFoundError:
     # 没有检测到MatrixSync，仅进行广播
     send = lambda *args, **kwargs: psi.broadcast(*args, **kwargs)
-except ImportError:
-    # 无法导入MatrixSync的API，判断为2.4.0新版本，导入修改后的新接口名称
-    from matrix_sync.reporter import send_matrix # type: ignore
-    send = lambda *args, **kwargs: (send_matrix(*args, **kwargs), psi.broadcast(*args, **kwargs))
 
 def on_load(server: PluginServerInterface, old):
     server.register_event_listener('player_ip_logger.player_login', on_player_ip_logged)

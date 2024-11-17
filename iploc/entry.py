@@ -7,7 +7,7 @@ psi = ServerInterface.psi()
 try:
     from matrix_sync.reporter import send_matrix
     # 同时转发到Matrix，若检测到插件MatrixSync正常工作，其v2.3.x版本支持已废弃，具体见其Release更新日志
-    send = lambda *args, **kwargs: (sender(*args, **kwargs), psi.broadcast(*args, **kwargs))
+    send = lambda *args, **kwargs: (send_matrix(*args, **kwargs), psi.broadcast(*args, **kwargs))
 except ModuleNotFoundError:
     # 没有检测到MatrixSync，仅进行广播
     send = lambda *args, **kwargs: psi.broadcast(*args, **kwargs)

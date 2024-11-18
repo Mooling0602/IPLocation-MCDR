@@ -26,6 +26,7 @@ def on_player_ip_logged(server: PluginServerInterface, player_name:str, player_i
     api_module = import_module(f"iploc.api.{using_api}")
     try:
         location = api_module.getIPLoc(server, ip)
-        send(f"[!] 玩家 {player} 的IP归属地：{location}")
+        message = config["format"].replace('%player%', player).replace('%location%', location)
+        send(message)
     except ModuleNotFoundError:
         server.logger.error(f"不支持该API接口: {using_api}，请正确配置插件（使用taobao或baidu）！")

@@ -1,2 +1,1 @@
-from . import baidu
-from . import taobao
+from . import *

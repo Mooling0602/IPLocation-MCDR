@@ -1,8 +1,8 @@
 import requests
 import re
 
-from mcdreforged.api.all import *
-from iploc.config import config
+from mcdreforged.api.all import ServerInterface
+from ..config import config
 
 # 百度API接口
 def getIPLoc(server: ServerInterface, ip: str):

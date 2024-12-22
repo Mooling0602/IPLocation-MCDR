@@ -1,4 +1,5 @@
 import requests
+import re
 
 from mcdreforged.api.all import *
 from iploc.config import config
@@ -18,8 +19,16 @@ def getIPLoc(server: ServerInterface, ip: str):
             # 检查返回的状态是否为成功
             if data["status"] == "0":
                 # 提取 IP 归属地信息
-                location = data["data"][0]["location"]
-                return location
+                if data["data"] != []:
+                    location = data["data"][0]["location"]
+                    return location
+                else:
+                    pattern = r"^127\.(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(?:\.(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){2}$"
+                    if re.fullmatch(pattern, ip):
+                        location = "本地回环地址"
+                        return location
+                    else:
+                        return "似乎为无效或非法IP地址，无法获取其归属地！"
             else:
                 return "无法获取IP归属地"
         except requests.RequestException as e:

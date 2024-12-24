@@ -4,9 +4,9 @@ from iploc.config import config
 
 psi = ServerInterface.psi()
 try:
-    # MatrixSync v2.4.0+
-    from matrix_sync.reporter import send_matrix # type: ignore
-    send = lambda *args, **kwargs: (send_matrix(*args, **kwargs), psi.broadcast(*args, **kwargs))
+    # MatrixSync v2.5.0+
+    from matrix_sync.commands import matrix_reporter
+    send = lambda *args, **kwargs: (matrix_reporter(*args, **kwargs), psi.broadcast(*args, **kwargs))
 except ModuleNotFoundError:
     # 没有检测到MatrixSync，仅进行广播
     send = lambda *args, **kwargs: psi.broadcast(*args, **kwargs)
